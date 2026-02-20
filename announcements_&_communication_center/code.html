@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Announcements &amp; Communication Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#182234",
+                        "border-dark": "#314368",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #314368;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #256af4;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-display">
+<header class="flex items-center justify-between border-b border-border-dark bg-background-light dark:bg-background-dark px-6 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-8 bg-primary/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">campaign</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Communication Center</h2>
+</div>
+<div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-surface-dark/50 rounded-lg border border-border-dark/50">
+<span class="material-symbols-outlined text-slate-400 text-sm">sync</span>
+<span class="text-slate-400 text-xs font-medium">Synced 2m ago</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="bg-surface-dark border-border-dark text-slate-100 text-sm rounded-lg pl-10 pr-4 py-2 w-64 focus:ring-primary focus:border-primary" placeholder="Search announcements..." type="text"/>
+</div>
+<button class="p-2 text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-px bg-border-dark mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden lg:block">
+<p class="text-sm font-semibold text-slate-100">Prof. Sarah Jenkins</p>
+<p class="text-xs text-slate-400">Biology Department</p>
+</div>
+<img alt="Profile" class="size-10 rounded-full border-2 border-primary" data-alt="Portrait of a female teacher smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrgUPOGevB3iR1YwsA9eCw3KOUb8mFOlLVeVFzs5vKoaMIrrMRqGjPPWLzRV-UNOH-FDCBcr-cAT1rRdbh6mAt5NK5mb4er34SklGBTTtxDpAlPWrhiKYmxBNvmxGeZ6xLoxse687LEqNbxJMlZmmoZiUlM1Bk3ZbVAmwv6DSmcKKISrAjCzsljAi8vr-nr-BYxfhYUhGkRckxFIQh6GyQkPdUna1QQwAOIVCGze0MnkONUm1FvCGqJSjhIAqr5iwclz4lLm5q0Qy3"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<aside class="w-64 border-r border-border-dark flex flex-col bg-background-light dark:bg-background-dark hidden lg:flex">
+<div class="p-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+                    Create New
+                </button>
+</div>
+<nav class="flex-1 px-3 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-surface-dark rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">inbox</span>
+<span class="font-medium">Inbox</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-white bg-primary/10 border border-primary/20 rounded-lg" href="#">
+<span class="material-symbols-outlined text-primary">send</span>
+<span class="font-medium">Sent</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-surface-dark rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">drafts</span>
+<span class="font-medium">Drafts</span>
+<span class="ml-auto bg-slate-700 text-[10px] px-2 py-0.5 rounded-full text-slate-200">12</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-surface-dark rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">auto_awesome_motion</span>
+<span class="font-medium">Templates</span>
+</a>
+<div class="pt-6 pb-2 px-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Labels</div>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-surface-dark rounded-lg transition-colors" href="#">
+<span class="size-2 rounded-full bg-green-500"></span>
+<span class="font-medium">Quizzes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-surface-dark rounded-lg transition-colors" href="#">
+<span class="size-2 rounded-full bg-yellow-500"></span>
+<span class="font-medium">Exams</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<div class="bg-surface-dark rounded-xl p-4 border border-border-dark">
+<p class="text-xs font-bold text-slate-100 mb-1">Storage Usage</p>
+<div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden mb-2">
+<div class="bg-primary w-3/4 h-full"></div>
+</div>
+<p class="text-[10px] text-slate-400">7.5 GB of 10 GB used</p>
+</div>
+</div>
+</aside>
+<aside class="w-80 border-r border-border-dark bg-background-light dark:bg-background-dark/50 flex flex-col hidden xl:flex">
+<div class="p-4 border-b border-border-dark">
+<h3 class="font-bold text-slate-100">Sent Announcements</h3>
+</div>
+<div class="flex-1 overflow-y-auto">
+<div class="p-4 border-b border-primary/30 bg-primary/5 cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold text-primary uppercase">Draft</span>
+<span class="text-[10px] text-slate-400">2:45 PM</span>
+</div>
+<h4 class="text-sm font-bold text-slate-100 truncate mb-1">Midterm Preparation Materials</h4>
+<p class="text-xs text-slate-400 line-clamp-2">Hi everyone, please find the attached study guide for next week's biology midterm. Make sure to...</p>
+</div>
+<div class="p-4 border-b border-border-dark hover:bg-surface-dark cursor-pointer transition-colors">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold text-green-500 uppercase">Sent</span>
+<span class="text-[10px] text-slate-400">Yesterday</span>
+</div>
+<h4 class="text-sm font-bold text-slate-100 truncate mb-1">Weekly Quiz #4 Live</h4>
+<p class="text-xs text-slate-400 line-clamp-2">The quiz on Cell Structure is now open for all students in Biology 101. Good luck!</p>
+</div>
+<div class="p-4 border-b border-border-dark hover:bg-surface-dark cursor-pointer transition-colors">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold text-green-500 uppercase">Sent</span>
+<span class="text-[10px] text-slate-400">Oct 12</span>
+</div>
+<h4 class="text-sm font-bold text-slate-100 truncate mb-1">Guest Lecture Update</h4>
+<p class="text-xs text-slate-400 line-clamp-2">Reminder: Dr. Aris will be visiting us this Friday via Zoom. Link is in the classroom.</p>
+</div>
+<div class="p-4 border-b border-border-dark hover:bg-surface-dark cursor-pointer transition-colors">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold text-green-500 uppercase">Sent</span>
+<span class="text-[10px] text-slate-400">Oct 10</span>
+</div>
+<h4 class="text-sm font-bold text-slate-100 truncate mb-1">Welcome to the semester</h4>
+<p class="text-xs text-slate-400 line-clamp-2">I am thrilled to have you all in Biology 101 this year. We will cover fascinating topics...</p>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col bg-background-light dark:bg-background-dark overflow-hidden">
+<div class="p-6 overflow-y-auto flex-1">
+<div class="max-w-4xl mx-auto space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<h1 class="text-2xl font-black text-slate-100 tracking-tight">Compose Announcement</h1>
+<p class="text-slate-400 text-sm">Draft automatically saved to your library.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition-colors">Discard</button>
+<button class="px-4 py-2 text-sm font-semibold bg-surface-dark border border-border-dark rounded-lg hover:bg-slate-700 text-slate-100 transition-colors">Save Draft</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 space-y-6">
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-bold text-slate-300 mb-2">Subject</label>
+<input class="w-full bg-surface-dark border-border-dark text-slate-100 rounded-xl px-4 py-3 focus:ring-primary focus:border-primary" placeholder="e.g. Important: Biology Midterm Preparation" type="text"/>
+</div>
+<div class="bg-surface-dark border border-border-dark rounded-xl overflow-hidden">
+<div class="flex items-center gap-1 p-2 border-b border-border-dark bg-slate-800/50">
+<button class="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors"><span class="material-symbols-outlined text-xl">format_bold</span></button>
+<button class="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors"><span class="material-symbols-outlined text-xl">format_italic</span></button>
+<button class="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors"><span class="material-symbols-outlined text-xl">format_list_bulleted</span></button>
+<div class="w-px h-6 bg-border-dark mx-1"></div>
+<button class="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors"><span class="material-symbols-outlined text-xl">link</span></button>
+<button class="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors"><span class="material-symbols-outlined text-xl">image</span></button>
+<button class="p-1.5 hover:bg-slate-700 rounded text-slate-300 transition-colors"><span class="material-symbols-outlined text-xl">attach_file</span></button>
+<div class="w-px h-6 bg-border-dark mx-1"></div>
+<button class="flex items-center gap-2 px-3 py-1 bg-primary/20 text-primary rounded-md text-xs font-bold hover:bg-primary/30 transition-all">
+<span class="material-symbols-outlined text-sm">quiz</span>
+                                            Link Quiz
+                                        </button>
+</div>
+<textarea class="w-full bg-transparent border-none text-slate-200 p-4 focus:ring-0 resize-none placeholder:text-slate-500" placeholder="Write your message to students here..." rows="12"></textarea>
+<div class="p-4 border-t border-border-dark bg-slate-800/30 flex flex-wrap gap-2">
+<div class="flex items-center gap-2 bg-surface-dark border border-border-dark px-3 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-red-400 text-lg">picture_as_pdf</span>
+<span class="text-xs text-slate-200">biology_midterm_guide.pdf</span>
+<button class="text-slate-500 hover:text-white"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+<div class="flex items-center gap-2 bg-surface-dark border border-border-dark px-3 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-primary text-lg">quiz</span>
+<span class="text-xs text-slate-200">Quiz: Cell Division Basics</span>
+<button class="text-slate-500 hover:text-white"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-surface-dark border border-border-dark rounded-xl p-5 space-y-5">
+<h3 class="text-sm font-bold text-slate-100 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">groups</span>
+                                    Target Audience
+                                </h3>
+<div>
+<p class="text-[10px] font-bold text-slate-500 uppercase mb-2 tracking-wider">Select Google Classroom Groups</p>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-border-dark bg-slate-800 text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="text-sm text-slate-300 group-hover:text-white transition-colors">Biology 101 - Section A</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-border-dark bg-slate-800 text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="text-sm text-slate-300 group-hover:text-white transition-colors">Biology 101 - Section B</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-border-dark bg-slate-800 text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="text-sm text-slate-300 group-hover:text-white transition-colors">Advanced Genetics Elective</span>
+</label>
+</div>
+</div>
+<div class="pt-4 border-t border-border-dark">
+<button class="w-full py-2 text-xs font-bold text-primary hover:bg-primary/5 rounded-lg transition-colors border border-primary/20">Manage Groups</button>
+</div>
+</div>
+<div class="bg-surface-dark border border-border-dark rounded-xl p-5 space-y-5">
+<h3 class="text-sm font-bold text-slate-100 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">settings</span>
+                                    Announcement Options
+                                </h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm text-slate-200">Enable comments</span>
+<span class="text-[10px] text-slate-500">Allow students to reply</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm text-slate-200">Email notification</span>
+<span class="text-[10px] text-slate-500">Send to all student emails</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm text-slate-200">Schedule for later</span>
+<span class="text-[10px] text-slate-500">Pick date &amp; time</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 border-t border-border-dark bg-background-light dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-4 bg-primary/10 border border-primary/20 p-3 rounded-xl w-full md:w-auto">
+<div class="size-10 flex items-center justify-center bg-white rounded-lg">
+<svg class="size-6" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" fill="#2E7D32"></path>
+<path d="M16 13H8V11H16V13Z" fill="white"></path>
+<path d="M16 16H8V14H16V16Z" fill="white"></path>
+<path d="M16 10H8V8H16V10Z" fill="white"></path>
+</svg>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-100">Post to Google Classroom</p>
+<label class="flex items-center gap-2 cursor-pointer mt-1">
+<input checked="" class="rounded border-primary/40 bg-slate-900 text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-[10px] text-slate-400">Cross-post automatically</span>
+</label>
+</div>
+</div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 py-3 text-sm font-bold text-slate-300 hover:text-white flex items-center justify-center gap-2 border border-border-dark rounded-xl transition-all">
+<span class="material-symbols-outlined text-lg">schedule</span>
+                            Schedule
+                        </button>
+<button class="flex-1 md:flex-none px-10 py-3 bg-primary hover:bg-primary/90 text-white font-black text-sm rounded-xl flex items-center justify-center gap-2 shadow-xl shadow-primary/30 transition-all transform hover:scale-[1.02]">
+                            Post Now
+                            <span class="material-symbols-outlined text-lg">rocket_launch</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

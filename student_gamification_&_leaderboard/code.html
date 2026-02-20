@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Gamification Dashboard | QuizMaster</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "accent-gold": "#FFD700",
+                        "accent-purple": "#A855F7",
+                        "surface-dark": "#1a2333",
+                        "border-dark": "#2d3a52",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Spline Sans', sans-serif;
+        }
+        .achievement-card:hover .badge-icon {
+            transform: scale(1.1) rotate(5deg);
+            transition: all 0.3s ease;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2d3a52;
+            border-radius: 10px;
+        }
+        .gold-glow {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        .primary-glow {
+            box-shadow: 0 0 15px rgba(37, 106, 244, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark px-6 md:px-10 py-3 bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">school</span>
+</div>
+<h2 class="text-slate-100 text-xl font-bold leading-tight tracking-tight">QuizMaster</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-9">
+<a class="text-slate-100 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">My Quizzes</a>
+<a class="text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Assignments</a>
+<a class="text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Classroom</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<div class="hidden md:flex items-center gap-2 bg-surface-dark border border-border-dark rounded-full px-4 py-1.5">
+<span class="material-symbols-outlined text-accent-gold text-lg" style="font-variation-settings: 'FILL' 1">stars</span>
+<span class="text-sm font-bold text-slate-100 tracking-wide">2,450 KP</span>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-full size-10 bg-surface-dark text-slate-100 hover:bg-border-dark border border-border-dark transition-all">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-full size-10 bg-surface-dark text-slate-100 hover:bg-border-dark border border-border-dark transition-all">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/30" data-alt="User profile avatar student portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDq6nYZMU02wypdfRfgRYgK6KLoAFzDXub9AT3qBU9SYCGgRM3w8894kbIvmAiPUqwgsMXyCRH9BCDvQfNFEBp0CTdmanBA4vCuAr46yj1JwbuW6AHlVIqx7QoS0dq0kSa1j_oITP8p_blAUM4ou0k9vPHokHWLQJzBlNGvV81xcHNF4w4f4Bug5zitNLJ-4iXFE5OoCWgsJjxRj_aEv9UWC_4eHliKX5p_agU79ANAHVzwMCDnPNDZDErTeyhsb4b9riKSJc7yHQWn');"></div>
+</div>
+</header>
+<main class="flex-1 flex flex-col max-w-[1400px] mx-auto w-full p-4 md:p-8 gap-8">
+<!-- Hero Level Progress Section -->
+<section class="bg-surface-dark border border-border-dark p-6 rounded-xl flex flex-col md:flex-row items-center gap-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+<div class="relative flex flex-col items-center">
+<div class="size-24 rounded-full bg-gradient-to-tr from-primary to-accent-purple p-1 flex items-center justify-center primary-glow">
+<div class="size-full bg-surface-dark rounded-full flex flex-col items-center justify-center">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Level</span>
+<span class="text-3xl font-black text-slate-100">05</span>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full">
+<div class="flex justify-between items-end mb-3">
+<div>
+<h1 class="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">Level 5 Explorer</h1>
+<p class="text-slate-400 text-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-green-500">sync</span>
+                                Synced with 10th Grade Mathematics - Room 204
+                            </p>
+</div>
+<div class="text-right">
+<span class="text-sm font-bold text-primary">850 <span class="text-slate-500">/ 1,000 XP</span></span>
+</div>
+</div>
+<div class="h-4 w-full bg-slate-800 rounded-full overflow-hidden border border-border-dark">
+<div class="h-full bg-gradient-to-r from-primary via-accent-purple to-primary bg-[length:200%_100%] rounded-full transition-all duration-1000" style="width: 85%;"></div>
+</div>
+<p class="text-slate-400 text-xs mt-3 font-medium tracking-wide uppercase italic">150 XP to reach Level 6 Mastermind</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-primary/20 transition-all active:scale-95 whitespace-nowrap">
+                        Start Next Quiz
+                    </button>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- LEFT COLUMN: Leaderboard -->
+<section class="lg:col-span-5 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-gold" style="font-variation-settings: 'FILL' 1">leaderboard</span>
+                            Class Leaderboard
+                        </h2>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-tighter">Top 10 Students</span>
+</div>
+<div class="bg-surface-dark border border-border-dark rounded-xl overflow-hidden shadow-2xl">
+<div class="flex flex-col max-h-[600px] overflow-y-auto custom-scrollbar">
+<!-- Rank 1: Gold -->
+<div class="flex items-center gap-4 p-4 border-b border-border-dark bg-accent-gold/5 hover:bg-accent-gold/10 transition-colors group">
+<div class="w-8 flex justify-center">
+<span class="material-symbols-outlined text-accent-gold text-2xl" style="font-variation-settings: 'FILL' 1">workspace_premium</span>
+</div>
+<div class="relative">
+<div class="size-12 rounded-full border-2 border-accent-gold p-0.5 gold-glow">
+<img alt="Alex" class="rounded-full w-full h-full object-cover" data-alt="First place student avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQEDJVViKmaYU-BgJvpFlfL_XzEP1gLUR8VE75UUIFO_b_PcDPe6VVUCs-Wpq7GWLxVFbsU6as9fiM_gPl8NMwQxjxqZ9AysiHBve1MXBEREF3ADlpWznzNdBDEOoRS3nVvO1TIB8ZT0enz1VGe5vJBfBb3bOIwmY60UcctlfmrTtJ10t8ZvEPKjJ2moFGSMmOrOnyjxZ25-PW6qAzFeUVN6RRIM4w3G4jLbD0F2r07YKWLQnN6mFDeFi74rasXAK6M7CjBmLLUhOn"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-accent-gold text-background-dark text-[10px] font-black rounded-full px-1.5 border border-surface-dark">1st</div>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-100">Alex Rivers</h4>
+<p class="text-xs text-slate-400">12 Quizzes Complete</p>
+</div>
+<div class="text-right">
+<span class="text-lg font-black text-accent-gold">4,820</span>
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">KP</p>
+</div>
+</div>
+<!-- Rank 2: Silver -->
+<div class="flex items-center gap-4 p-4 border-b border-border-dark hover:bg-border-dark/50 transition-colors">
+<div class="w-8 flex justify-center text-slate-400 font-black text-lg">2</div>
+<div class="relative">
+<div class="size-10 rounded-full border-2 border-slate-300 p-0.5">
+<img alt="Sophie" class="rounded-full w-full h-full object-cover" data-alt="Second place student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA4RyHetB8exOlnmcPNVzN51sz49k2fiTgnRQ_RwQksAHh4UO6ImUH8zb7RzNT1tTxgtD9ePYX2vWE3ie6Bn-EUFwO18CHGDS-BumeYfuiOKsCoWkpnsPmo9m3wWZqBJYE_7anvtHpisfm8QCcDjVzjnoRSNqgMWIahLI1u5uEAMR7xQgeqCj_RQsY6sA8M3TmrhuqlIorlBks2TElKiTLmSlCqRS6ljKhJ8yMIekcUIV1jEJQ2U3GUwOKkihDN-VeBh0RWXkhHmbE"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-slate-300 text-background-dark text-[10px] font-black rounded-full px-1.5 border border-surface-dark">2nd</div>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-100">Sophie Chen</h4>
+<p class="text-xs text-slate-400">Streak: 7 Days</p>
+</div>
+<div class="text-right">
+<span class="text-base font-bold text-slate-300">4,150</span>
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">KP</p>
+</div>
+</div>
+<!-- Rank 3: Bronze -->
+<div class="flex items-center gap-4 p-4 border-b border-border-dark hover:bg-border-dark/50 transition-colors">
+<div class="w-8 flex justify-center text-amber-600 font-black text-lg">3</div>
+<div class="relative">
+<div class="size-10 rounded-full border-2 border-amber-600 p-0.5">
+<img alt="Marcus" class="rounded-full w-full h-full object-cover" data-alt="Third place student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa3eSfjpOBOHFbUFDv6nC7LkQojyO9pQ9_XXcv54Jbu99a-TkBjflR8h5ursW0-zCoqgIQu7gFQqkiTmR9zCxiFu8WIechjnv67FSaS6APp0ucGkcSau_b70QR3yTOq8A5Ct8LZc-wGi0eMyLCn-p1oRsmD7FTGjsjOpyZndZ93qsvfMCWrMjz2YY0qdvWbflVftqgi12e8q-BK2ACkl-3czdziLLr7s1TeRCrkTCFSh9AVEfUaDcGFT6aqq2I-0U2SwSPu13DRBrs"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-amber-600 text-slate-100 text-[10px] font-black rounded-full px-1.5 border border-surface-dark">3rd</div>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-100">Marcus Wright</h4>
+<p class="text-xs text-slate-400">Power-up Master</p>
+</div>
+<div class="text-right">
+<span class="text-base font-bold text-amber-600">3,980</span>
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">KP</p>
+</div>
+</div>
+<!-- User Rank (Active Student) -->
+<div class="flex items-center gap-4 p-4 border-b border-border-dark bg-primary/10 transition-colors primary-glow relative z-10">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="w-8 flex justify-center text-primary font-black text-lg italic">5</div>
+<div class="relative">
+<div class="size-10 rounded-full border-2 border-primary p-0.5">
+<img alt="You" class="rounded-full w-full h-full object-cover" data-alt="Your profile avatar on leaderboard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8AqLLC0RM3d1VOKwaZNEm_5l2VrviXut-QmTM57VoGozDavDl9MVxo66rk-oZggAr388rbDDYHzgNchHnCHKCKvYbzTzhwYrAdxAFrV6U0zffZT8SajdGkxlPGsIGuQ1sfb8FjtVeLHMe8XLYqViHKbqYreQxOa9d5zz_tqXSAxfxS7T0OhL4UBuiQ8IiT_2SUex41MPR81oqogzPICqiJQkiGRWgwxfvtpgTseWxRLTzn4jRF0OJcDeHSteEfjOaGayy-MWJcuxj"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white text-[10px] font-black rounded-full px-1.5 border border-surface-dark">You</div>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-primary italic">Leo Gardener</h4>
+<p class="text-xs text-primary/70">Level 5 Explorer</p>
+</div>
+<div class="text-right">
+<span class="text-base font-bold text-primary">2,450</span>
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">KP</p>
+</div>
+</div>
+<!-- Other Ranks -->
+<div class="flex items-center gap-4 p-4 border-b border-border-dark hover:bg-border-dark/50 transition-colors opacity-70">
+<div class="w-8 flex justify-center text-slate-500 font-bold text-sm italic">6</div>
+<div class="size-10 rounded-full bg-slate-800 p-0.5">
+<img alt="Jen" class="rounded-full w-full h-full object-cover" data-alt="Student avatar 6th place" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKLmi_ylIuD6nPlmSvqmiM6TjbHv4kqmL_rJWOI0qNziPrLPcYPUhtc6BrB9kpXaABDRRdHSTGSJjCzebXsVlpp7WZvkVH3IEq-z_pjsLPLzeRLbu7EYlh__ot131RIwpM7z-EckvjDI_4CGkkt3fBF3GadKxmZE-8mMvdyV680PptGbVATORMvz68FFm-L6GYrKzoU5TgOaxKLFMwVJEqHCqVy66Hk-IEikG7-R3d4S_qXx5q7EzU97oclWU9Lj6N3d50d0nXheiG"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-200 text-sm">Jen H.</h4>
+</div>
+<div class="text-right">
+<span class="text-sm font-bold text-slate-400">2,310</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 border-b border-border-dark hover:bg-border-dark/50 transition-colors opacity-70">
+<div class="w-8 flex justify-center text-slate-500 font-bold text-sm italic">7</div>
+<div class="size-10 rounded-full bg-slate-800 p-0.5">
+<img alt="Dave" class="rounded-full w-full h-full object-cover" data-alt="Student avatar 7th place" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeCUNnlyc6B6g6-N4QNlR73kw9DnoYiqJ1yhfYuTbKhmWHmTHcqGHWecvJT0FhjAvdx8icgJtACbvX_aO1N9P6I5oA31HNOk631KXJz3jcwLjfMoq9zUIoMRE6k6Stq6PbhoufG_812S_5yq6_3I2nL6ODLlG2_hfNBaHeUznl1pdjJyQ7KYA2BtERv2ur4iLQMl5zC6h89rkSAHHoFjR9HxzjaKrna35bMdrL3rJL7zY6xwlbIFyUqhov9zeRDjvTMrY0wCOgiN_8"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-slate-200 text-sm">David Miller</h4>
+</div>
+<div class="text-right">
+<span class="text-sm font-bold text-slate-400">1,990</span>
+</div>
+</div>
+</div>
+<div class="p-3 bg-background-dark/50 text-center">
+<button class="text-xs font-bold text-slate-400 hover:text-primary transition-colors flex items-center justify-center gap-1 mx-auto">
+                                View Full Leaderboard
+                                <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+</section>
+<!-- RIGHT COLUMN: Achievements & Quests -->
+<section class="lg:col-span-7 flex flex-col gap-8">
+<!-- Achievements Grid -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-purple" style="font-variation-settings: 'FILL' 1">military_tech</span>
+                                Your Achievements
+                            </h2>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-tighter">8 / 24 Unlocked</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<!-- Achievement: Speed Demon -->
+<div class="achievement-card flex flex-col items-center p-4 bg-surface-dark border border-border-dark rounded-xl transition-all hover:border-primary/50 group">
+<div class="badge-icon size-16 rounded-full bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center mb-3 shadow-lg shadow-orange-500/20">
+<span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings: 'FILL' 1">bolt</span>
+</div>
+<h4 class="text-xs font-bold text-slate-100 text-center uppercase tracking-tight">Speed Demon</h4>
+<p class="text-[10px] text-slate-500 text-center mt-1">Quizzes in &lt; 2min</p>
+</div>
+<!-- Achievement: Class Guru -->
+<div class="achievement-card flex flex-col items-center p-4 bg-surface-dark border border-border-dark rounded-xl transition-all hover:border-accent-purple/50 group">
+<div class="badge-icon size-16 rounded-full bg-gradient-to-br from-accent-purple to-indigo-600 flex items-center justify-center mb-3 shadow-lg shadow-purple-500/20">
+<span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings: 'FILL' 1">psychology</span>
+</div>
+<h4 class="text-xs font-bold text-slate-100 text-center uppercase tracking-tight">Class Guru</h4>
+<p class="text-[10px] text-slate-500 text-center mt-1">Five 100% scores</p>
+</div>
+<!-- Achievement: Night Owl -->
+<div class="achievement-card flex flex-col items-center p-4 bg-surface-dark border border-border-dark rounded-xl transition-all hover:border-accent-gold/50 group">
+<div class="badge-icon size-16 rounded-full bg-gradient-to-br from-slate-600 to-background-dark flex items-center justify-center mb-3 shadow-lg ring-1 ring-border-dark">
+<span class="material-symbols-outlined text-slate-200 text-3xl" style="font-variation-settings: 'FILL' 1">dark_mode</span>
+</div>
+<h4 class="text-xs font-bold text-slate-100 text-center uppercase tracking-tight">Night Owl</h4>
+<p class="text-[10px] text-slate-500 text-center mt-1">Study past 10 PM</p>
+</div>
+<!-- Achievement: Locked Mastermind -->
+<div class="achievement-card flex flex-col items-center p-4 bg-background-dark/30 border border-dashed border-border-dark rounded-xl transition-all relative overflow-hidden group">
+<div class="badge-icon size-16 rounded-full bg-slate-800 flex items-center justify-center mb-3 grayscale opacity-40">
+<span class="material-symbols-outlined text-slate-400 text-3xl" style="font-variation-settings: 'FILL' 0">star_half</span>
+</div>
+<h4 class="text-xs font-bold text-slate-500 text-center uppercase tracking-tight">Mastermind</h4>
+<p class="text-[10px] text-slate-600 text-center mt-1">Reach Level 10</p>
+<div class="absolute inset-0 bg-background-dark/20 backdrop-blur-[1px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-slate-400">lock</span>
+</div>
+</div>
+<!-- Achievement Row 2 Locked -->
+<div class="achievement-card flex flex-col items-center p-4 bg-background-dark/30 border border-dashed border-border-dark rounded-xl opacity-50">
+<div class="size-16 rounded-full bg-slate-800 flex items-center justify-center mb-3 grayscale">
+<span class="material-symbols-outlined text-slate-400 text-3xl">verified</span>
+</div>
+<h4 class="text-xs font-bold text-slate-600 text-center uppercase">Verified Quizzer</h4>
+</div>
+<div class="achievement-card flex flex-col items-center p-4 bg-background-dark/30 border border-dashed border-border-dark rounded-xl opacity-50">
+<div class="size-16 rounded-full bg-slate-800 flex items-center justify-center mb-3 grayscale">
+<span class="material-symbols-outlined text-slate-400 text-3xl">local_fire_department</span>
+</div>
+<h4 class="text-xs font-bold text-slate-600 text-center uppercase">Streak King</h4>
+</div>
+<div class="achievement-card flex flex-col items-center p-4 bg-background-dark/30 border border-dashed border-border-dark rounded-xl opacity-50">
+<div class="size-16 rounded-full bg-slate-800 flex items-center justify-center mb-3 grayscale">
+<span class="material-symbols-outlined text-slate-400 text-3xl">video_call</span>
+</div>
+<h4 class="text-xs font-bold text-slate-600 text-center uppercase">Camera Ready</h4>
+</div>
+<div class="achievement-card flex flex-col items-center p-4 bg-background-dark/30 border border-dashed border-border-dark rounded-xl opacity-50">
+<div class="size-16 rounded-full bg-slate-800 flex items-center justify-center mb-3 grayscale">
+<span class="material-symbols-outlined text-slate-400 text-3xl">groups</span>
+</div>
+<h4 class="text-xs font-bold text-slate-600 text-center uppercase">Team Player</h4>
+</div>
+</div>
+</div>
+<!-- Weekly Quests Sidebar (Internal Section) -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h2 class="text-xl font-bold text-slate-100 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">task_alt</span>
+                                Weekly Quests
+                            </h2>
+<div class="flex items-center gap-2 bg-primary/20 rounded-full px-3 py-1">
+<span class="text-[10px] font-black text-primary uppercase tracking-wider">Ends in 2 Days</span>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Quest 1 -->
+<div class="flex flex-col gap-3 p-4 bg-surface-dark border border-border-dark rounded-xl group hover:border-primary/40 transition-all">
+<div class="flex justify-between items-start">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">video_library</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-100">Complete 3 Videoquizzes</h4>
+<p class="text-xs text-slate-500">Engage with new educational content</p>
+</div>
+</div>
+<span class="text-xs font-bold text-primary">+200 XP</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 66%;"></div>
+</div>
+<span class="text-xs font-bold text-slate-300">2/3</span>
+</div>
+</div>
+<!-- Quest 2 -->
+<div class="flex flex-col gap-3 p-4 bg-surface-dark border border-border-dark rounded-xl group hover:border-primary/40 transition-all">
+<div class="flex justify-between items-start">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">fact_check</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-100">Perfect Score Marathon</h4>
+<p class="text-xs text-slate-500">Score 100% on two quizzes in a row</p>
+</div>
+</div>
+<span class="text-xs font-bold text-primary">+450 XP</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 50%;"></div>
+</div>
+<span class="text-xs font-bold text-slate-300">1/2</span>
+</div>
+</div>
+<!-- Quest 3: Completed -->
+<div class="flex flex-col gap-3 p-4 bg-green-500/5 border border-green-500/20 rounded-xl relative overflow-hidden">
+<div class="absolute -top-1 -right-1">
+<span class="material-symbols-outlined text-green-500/20 text-4xl" style="font-variation-settings: 'FILL' 1">check_circle</span>
+</div>
+<div class="flex justify-between items-start opacity-70">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-green-500" style="font-variation-settings: 'FILL' 1">schedule</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-200">Early Bird</h4>
+<p class="text-xs text-slate-500">Finish a quiz before 9:00 AM</p>
+</div>
+</div>
+<span class="text-xs font-bold text-green-500">CLAIMED</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-1 h-2 bg-green-500/10 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 rounded-full" style="width: 100%;"></div>
+</div>
+<span class="material-symbols-outlined text-green-500 text-sm" style="font-variation-settings: 'FILL' 1">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Fixed Bottom Mobile Action (Optional for desktop but nice for form factor) -->
+<div class="lg:hidden sticky bottom-6 mx-auto px-4 w-full max-w-md">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-black py-4 rounded-full shadow-2xl shadow-primary/40 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">play_arrow</span>
+                START NEXT QUIZ
+            </button>
+</div>
+<!-- Footer -->
+<footer class="mt-12 py-8 border-t border-border-dark px-10 text-center">
+<p class="text-slate-500 text-xs font-medium tracking-wide uppercase">
+                Interactive Learning System • © 2024 QuizMaster Inc.
+            </p>
+</footer>
+</div>
+</body></html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Drag &amp; Drop Activity - Human Anatomy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 lg:px-10 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined block">science</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight tracking-tight">Human Anatomy: The Heart</h1>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="flex h-2 w-2 rounded-full bg-green-500"></span>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Google Classroom Sync Active</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex flex-col items-end gap-1.5">
+<div class="flex justify-between w-48 text-xs font-semibold">
+<span>Progress</span>
+<span>60%</span>
+</div>
+<div class="w-48 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-3/5 rounded-full"></div>
+</div>
+</div>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col max-w-7xl mx-auto w-full p-6 lg:p-10 gap-8">
+<!-- Instruction Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-1">
+<h2 class="text-2xl font-bold">Label the Heart Anatomy</h2>
+<p class="text-slate-500 dark:text-slate-400">Drag labels from the left and drop them into the correct highlighted zones on the diagram.</p>
+</div>
+<div class="bg-white dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm text-sm font-medium">
+<span class="text-primary font-bold">Question 3</span> <span class="text-slate-400 mx-1">/</span> 5
+            </div>
+</div>
+<!-- Activity Grid -->
+<div class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Draggable Labels Column (Source) -->
+<div class="lg:col-span-3 space-y-3">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 px-1">Draggable Labels</h3>
+<div class="group flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm cursor-grab active:cursor-grabbing hover:border-primary/50 transition-all border-l-4 border-l-primary">
+<span class="font-medium">Aorta</span>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">drag_indicator</span>
+</div>
+<div class="group flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm cursor-grab active:cursor-grabbing hover:border-primary/50 transition-all">
+<span class="font-medium">Left Ventricle</span>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">drag_indicator</span>
+</div>
+<div class="group flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm cursor-grab active:cursor-grabbing hover:border-primary/50 transition-all">
+<span class="font-medium">Pulmonary Vein</span>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">drag_indicator</span>
+</div>
+<div class="group flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm cursor-grab active:cursor-grabbing hover:border-primary/50 transition-all">
+<span class="font-medium text-slate-400 line-through decoration-primary decoration-2">Right Atrium</span>
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+</div>
+<div class="group flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm cursor-grab active:cursor-grabbing hover:border-primary/50 transition-all">
+<span class="font-medium">Superior Vena Cava</span>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors">drag_indicator</span>
+</div>
+<div class="mt-8 p-4 bg-primary/5 rounded-xl border border-primary/10">
+<p class="text-xs leading-relaxed text-slate-600 dark:text-slate-400 italic">
+<span class="material-symbols-outlined text-primary text-sm align-middle mr-1">info</span>
+                        Tip: Look for the blue glow on the diagram to see where labels can be dropped.
+                    </p>
+</div>
+</div>
+<!-- Interactive Diagram Column (Target) -->
+<div class="lg:col-span-9 relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm min-h-[500px] flex items-center justify-center p-8 overflow-hidden">
+<!-- Background heart diagram -->
+<div class="relative w-full max-w-2xl">
+<img alt="Detailed anatomical heart diagram showing chambers and vessels" class="w-full h-auto opacity-80" data-alt="Scientific illustration of a human heart for labeling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw1QKI6FLqPzJ-pQs5G8cjoRkeFRGQ15X8UwTGkzSgLyfWK2r4px0dpC1KRKq1RmWQ3LESU3EcqJmQ32ikMSCGDdlLJ59hqHXOHhxUYtBrdcbCgt9tUPiNdyqHo1sYUaI1QPp-d_JMiNDxu_D9iGaHCcd-2bRqPnIrnyslSJDlX1SnCSKWPjX7eMdFnPTjmiRC081o1KzxcEvXXCQ39MjSwLZ4X-bPcppY9Xt2KIhngueZBCMd6890mOlXmlQ0zz1zlFzgr43Kqt44"/>
+<!-- Drop Zone Overlays (Absolute Positioned) -->
+<!-- Superior Vena Cava Zone -->
+<div class="absolute top-[10%] left-[25%] w-32 h-12 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-lg flex items-center justify-center bg-slate-50/50 dark:bg-slate-800/50 transition-all hover:border-primary hover:bg-primary/10 hover:shadow-[0_0_15px_rgba(37,106,244,0.3)] group cursor-pointer">
+<span class="text-[10px] uppercase font-bold text-slate-400 group-hover:text-primary">Drop Here</span>
+</div>
+<!-- Aorta Zone -->
+<div class="absolute top-[5%] left-[50%] w-32 h-12 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-lg flex items-center justify-center bg-slate-50/50 dark:bg-slate-800/50 transition-all hover:border-primary hover:bg-primary/10 hover:shadow-[0_0_15px_rgba(37,106,244,0.3)] group cursor-pointer">
+<span class="text-[10px] uppercase font-bold text-slate-400 group-hover:text-primary">Drop Here</span>
+</div>
+<!-- Right Atrium Zone (Completed) -->
+<div class="absolute top-[40%] left-[15%] w-32 h-12 border-2 border-primary bg-primary/10 rounded-lg flex items-center justify-center shadow-sm">
+<span class="text-sm font-bold text-primary">Right Atrium</span>
+</div>
+<!-- Left Ventricle Zone -->
+<div class="absolute bottom-[20%] right-[20%] w-32 h-12 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-lg flex items-center justify-center bg-slate-50/50 dark:bg-slate-800/50 transition-all hover:border-primary hover:bg-primary/10 hover:shadow-[0_0_15px_rgba(37,106,244,0.3)] group cursor-pointer">
+<span class="text-[10px] uppercase font-bold text-slate-400 group-hover:text-primary">Drop Here</span>
+</div>
+<!-- Pulmonary Vein Zone -->
+<div class="absolute top-[35%] right-[5%] w-32 h-12 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-lg flex items-center justify-center bg-slate-50/50 dark:bg-slate-800/50 transition-all hover:border-primary hover:bg-primary/10 hover:shadow-[0_0_15px_rgba(37,106,244,0.3)] group cursor-pointer">
+<span class="text-[10px] uppercase font-bold text-slate-400 group-hover:text-primary">Drop Here</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Footer Actions -->
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-6 lg:px-10">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">help_outline</span>
+<p class="text-sm">Need help identifying the structures? Click <a class="text-primary hover:underline underline-offset-4" href="#">here</a> for a review.</p>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">refresh</span>
+                    Reset
+                </button>
+<button class="flex-1 sm:flex-none px-10 py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:bg-primary/90 transition-all shadow-md shadow-primary/20 flex items-center justify-center gap-2">
+                    Submit Answer
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</footer>
+</body></html>

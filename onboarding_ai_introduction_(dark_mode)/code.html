@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>QuizAI - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0a0e17",
+                        "card-dark": "#161e2c",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .ai-glow {
+            box-shadow: 0 0 25px 2px rgba(37, 106, 244, 0.4);
+        }
+        .glass-panel {
+            background: rgba(22, 30, 44, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="w-full border-b border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark/80 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="bg-primary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-white text-2xl">auto_awesome</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">QuizAI</h2>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Features</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Integrations</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Pricing</a>
+</nav>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-800"></div>
+<div class="flex items-center gap-4">
+<button class="text-sm font-medium hover:text-primary transition-colors">Support</button>
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-6 py-12 flex flex-col items-center">
+<!-- Onboarding Progress -->
+<div class="w-full max-w-md mb-12">
+<div class="flex justify-between items-center mb-3">
+<span class="text-xs font-semibold uppercase tracking-wider text-primary">Onboarding Step 2 of 4</span>
+<span class="text-xs font-medium text-slate-500">50% Complete</span>
+</div>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 50%;"></div>
+</div>
+<p class="text-center mt-4 text-sm text-slate-500 dark:text-slate-400">Next: Connecting to Google Classroom</p>
+</div>
+<!-- Main Introduction -->
+<div class="text-center mb-12">
+<h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-tight">
+                Meet your AI Assistant
+            </h1>
+<p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                Transform any <span class="text-primary font-semibold">PDF</span> or <span class="text-primary font-semibold">YouTube video</span> into an interactive quiz in seconds.
+            </p>
+</div>
+<!-- AI Creator Preview Component -->
+<div class="w-full glass-panel rounded-2xl p-8 mb-12 shadow-2xl relative overflow-hidden group">
+<!-- Decorative Gradients -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+<!-- Input Source -->
+<div class="flex-1 w-full space-y-4">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">attachment</span>
+<h3 class="font-semibold text-lg">Input Material</h3>
+</div>
+<div class="bg-background-dark/50 border border-slate-700/50 p-4 rounded-xl flex items-center gap-4">
+<div class="p-2 bg-red-500/10 rounded-lg">
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium truncate">Biology_Lesson_Plan_Q4.pdf</p>
+<p class="text-xs text-slate-500">2.4 MB • 12 Pages</p>
+</div>
+<span class="material-symbols-outlined text-slate-500 text-sm">check_circle</span>
+</div>
+<div class="bg-background-dark/50 border border-slate-700/50 p-4 rounded-xl flex items-center gap-4 opacity-60">
+<div class="p-2 bg-red-600/10 rounded-lg">
+<span class="material-symbols-outlined text-red-600">play_circle</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium truncate">Photosynthesis Explained...</p>
+<p class="text-xs text-slate-500">youtube.com/watch?v=...</p>
+</div>
+</div>
+</div>
+<!-- AI Processing Engine -->
+<div class="flex flex-col items-center justify-center gap-4">
+<div class="relative">
+<!-- Orbiting Circles -->
+<div class="absolute inset-0 border border-primary/20 rounded-full animate-ping opacity-20"></div>
+<div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center ai-glow relative z-10">
+<span class="material-symbols-outlined text-white text-4xl leading-none">temp_preferences_custom</span>
+</div>
+</div>
+<div class="text-center">
+<span class="text-xs font-bold uppercase tracking-widest text-primary block mb-1">Processing</span>
+<div class="flex gap-1 justify-center">
+<div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce"></div>
+<div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:0.2s]"></div>
+<div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce [animation-delay:0.4s]"></div>
+</div>
+</div>
+</div>
+<!-- Result Preview -->
+<div class="flex-1 w-full space-y-4">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">quiz</span>
+<h3 class="font-semibold text-lg">Interactive Quiz</h3>
+</div>
+<div class="space-y-3">
+<div class="p-3 bg-primary/10 border border-primary/20 rounded-lg">
+<div class="h-2 w-3/4 bg-primary/40 rounded-full mb-2"></div>
+<div class="flex gap-2">
+<div class="h-1.5 w-1/4 bg-primary/20 rounded-full"></div>
+<div class="h-1.5 w-1/4 bg-primary/20 rounded-full"></div>
+</div>
+</div>
+<div class="p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg">
+<div class="h-2 w-1/2 bg-slate-700 rounded-full mb-2"></div>
+<div class="flex gap-2">
+<div class="h-1.5 w-1/3 bg-slate-700/50 rounded-full"></div>
+<div class="h-1.5 w-1/4 bg-slate-700/50 rounded-full"></div>
+</div>
+</div>
+<div class="p-3 bg-slate-800/50 border border-slate-700/50 rounded-lg opacity-40">
+<div class="h-2 w-2/3 bg-slate-700 rounded-full mb-2"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Integration Badge -->
+<div class="mt-8 pt-6 border-t border-slate-700/50 flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<div class="size-6 bg-white rounded-md flex items-center justify-center p-1">
+<img alt="Google Classroom" class="w-full h-full object-contain" data-alt="Google Classroom icon logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkD5aN2YF8VAvdhRr_KjA1Bh_sbnUWaED9oi_xkdd3HCTPm2ZOwzxXj7nPWgo7iwng3PNNJkAlsAYFG335EIxkubeGbm0bUnMRmHlrh8BQojJbHc6-xmBFayVd4B_kYDYbjlCOOu90TFIIH_XENuqxeRYFyCtlXHy63OubZ4glC_EsGVn2QEQ20rWtLW5LHDVXYldhLWZdiOS4ZI6l5AZctrf_C2VIl_oe3hCX7CjB2sO78LPmQoDR34_Apxhh866bz8lN2atAmp-V"/>
+</div>
+<span class="text-sm font-medium text-slate-400">Works seamlessly with Google Classroom</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full">
+<span class="material-symbols-outlined text-green-500 text-xs">bolt</span>
+<span class="text-[10px] font-bold text-green-500 uppercase">Instant Generation Active</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center gap-4 w-full max-w-md">
+<button class="w-full h-14 border-2 border-slate-700 hover:border-primary hover:bg-primary/5 transition-all rounded-xl font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">lightbulb</span>
+                Try a Sample
+            </button>
+<button class="w-full h-14 bg-primary hover:bg-primary/90 transition-all rounded-xl font-bold text-white flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+                Next Step
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<p class="mt-8 text-slate-500 text-sm">
+            Not sure how it works? <a class="text-primary hover:underline underline-offset-4" href="#">Watch 1-min tour</a>
+</p>
+</main>
+<!-- Background Decoration -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute top-1/4 -right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute -bottom-1/4 -left-1/4 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px]"></div>
+</div>
+</body></html>

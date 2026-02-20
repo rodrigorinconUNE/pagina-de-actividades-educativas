@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Interactive Matching Activity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .connecting-line {
+            stroke: #256af4;
+            stroke-width: 3;
+            stroke-linecap: round;
+            fill: none;
+        }
+        .matched-line {
+            stroke: #256af4;
+            stroke-width: 3;
+            opacity: 0.4;
+        }
+        .ghost-line {
+            stroke-dasharray: 8, 8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-3">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight tracking-tight">Biology 101: Cell Theory</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Activity: Organelle Matching</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined text-primary text-sm">timer</span>
+<span class="text-sm font-medium">12:45 remaining</span>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:border-slate-700"></div>
+<button class="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-base">exit_to_app</span>
+                    Back to Classroom
+                </button>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full p-6 md:p-8 flex flex-col">
+<!-- Activity Header -->
+<div class="mb-8 text-center">
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Match the Organelles</h2>
+<p class="text-slate-600 dark:text-slate-400">Click a term on the left, then select its matching definition on the right.</p>
+</div>
+<!-- Matching Canvas Area -->
+<div class="relative grid grid-cols-1 md:grid-cols-2 gap-x-32 gap-y-6 flex-1 items-start content-start">
+<!-- SVG Overlay for lines -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none hidden md:block" style="z-index: 0;">
+<!-- Matched pair 1 -->
+<path class="matched-line" d="M 400 120 L 600 280"></path>
+<!-- Matched pair 2 -->
+<path class="matched-line" d="M 400 440 L 600 120"></path>
+<!-- Active ghost line following cursor (conceptual) -->
+<path class="connecting-line ghost-line" d="M 400 280 Q 550 250 720 350"></path>
+</svg>
+<!-- Column A: Terms -->
+<div class="flex flex-col gap-4 z-10">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-2 px-2">Organelle Terms</h3>
+<!-- Card 1: Matched -->
+<button class="w-full text-left p-5 bg-primary/10 border-2 border-primary/30 rounded-xl flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="font-bold text-lg">Mitochondria</span>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</button>
+<!-- Card 2: Selected/Active -->
+<button class="w-full text-left p-5 bg-white dark:bg-slate-800 border-2 border-primary shadow-[0_0_15px_rgba(37,106,244,0.3)] rounded-xl flex items-center justify-between ring-4 ring-primary/10">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-primary text-white flex items-center justify-center">
+<span class="material-symbols-outlined">layers</span>
+</div>
+<span class="font-bold text-lg text-primary">Cell Membrane</span>
+</div>
+<div class="size-3 bg-primary rounded-full animate-pulse"></div>
+</button>
+<!-- Card 3: Neutral -->
+<button class="w-full text-left p-5 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 hover:border-primary/50 rounded-xl flex items-center justify-between transition-all">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-500">
+<span class="material-symbols-outlined">adjust</span>
+</div>
+<span class="font-bold text-lg">Nucleus</span>
+</div>
+</button>
+<!-- Card 4: Matched -->
+<button class="w-full text-left p-5 bg-primary/10 border-2 border-primary/30 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">bubble_chart</span>
+</div>
+<span class="font-bold text-lg">Ribosomes</span>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</button>
+</div>
+<!-- Column B: Definitions -->
+<div class="flex flex-col gap-4 z-10">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-2 px-2">Function &amp; Description</h3>
+<!-- Definition 1: Matched to Ribosomes -->
+<button class="w-full text-left p-5 bg-primary/10 border-2 border-primary/30 rounded-xl flex flex-col gap-2">
+<p class="text-sm font-medium leading-relaxed">Small structures that serve as the site of protein synthesis in the cell.</p>
+</button>
+<!-- Definition 2: Neutral / Hover target -->
+<button class="w-full text-left p-5 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 hover:border-primary hover:shadow-lg rounded-xl flex flex-col gap-3 transition-all">
+<img class="w-full h-24 object-cover rounded-lg mb-1" data-alt="Microscopic view of cell membrane structure" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzVW2d8bcZiE9GIYkaIKhe-hth0b7NKsT_sKWS8EmHSEpMuAJgfG5L6jk8FCMcjaKhwGvAsqGdDwqhEorr2VZwc8nE4I_u8gjzYvO3zKPFO-AQJoQJ5MkG8fZ7Da9kolVXRHv3wERGyBdCVGSXHsiEPT7Py_We0m7dWXr_afGv6r11rKrBjiQgoI-JToAvGM045MbDj1QZ0dqK6Yfa2zjyJXhwj5F8l0DU-ZB0i3XLay9tqbekJTOWwYpU4EFvTRNLNjqaATz31z52"/>
+<p class="text-sm font-medium leading-relaxed">A thin, flexible barrier that surrounds the cell and regulates what enters and leaves.</p>
+</button>
+<!-- Definition 3: Matched to Mitochondria -->
+<button class="w-full text-left p-5 bg-primary/10 border-2 border-primary/30 rounded-xl flex flex-col gap-2">
+<p class="text-sm font-medium leading-relaxed">The "powerhouse" of the cell; converts chemical energy from food into usable compounds.</p>
+</button>
+<!-- Definition 4: Neutral -->
+<button class="w-full text-left p-5 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 hover:border-primary rounded-xl flex flex-col gap-2 transition-all">
+<p class="text-sm font-medium leading-relaxed">Contains the cell's genetic material (DNA) and controls the cell's activities.</p>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer Control Bar -->
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-6">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Progress Section -->
+<div class="flex flex-col gap-2 w-full md:w-64">
+<div class="flex justify-between text-sm font-medium">
+<span>Progress</span>
+<span>2 / 4 Matched</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 50%;"></div>
+</div>
+</div>
+<!-- Controls -->
+<div class="flex items-center gap-4">
+<button class="px-6 py-3 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                    Reset Activity
+                </button>
+<button class="px-8 py-3 bg-primary hover:bg-blue-600 text-white font-bold rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">task_alt</span>
+                    Check Answers
+                </button>
+</div>
+</div>
+</footer>
+</body></html>

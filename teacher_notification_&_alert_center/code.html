@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teacher Notification &amp; Alert Center</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-sidebar-item {
+            background-color: #256af415;
+            color: #256af4;
+            border-right: 3px solid #256af4;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-8 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-1.5 rounded-lg text-white">
+<span class="material-symbols-outlined text-2xl block">school</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold tracking-tight">QuizMaster Edu</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">My Quizzes</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Classroom</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm w-64 focus:ring-2 focus:ring-primary/50" placeholder="Search students or quizzes..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden ml-2 ring-2 ring-slate-100 dark:ring-slate-800">
+<img class="w-full h-full object-cover" data-alt="Teacher profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGSOKORCOyCs2d9V2osfLoTqhpTajoKrvh0PICJKNiAYwM0wPebnyFF6XLRhXHwzrCoQrUHiXcDq_Tm7R43zN9OxpmNtYf2ghr7LaJl3WlW1KynY8wJ-61Wvjw6zpRbvKwIYzAbEAGvFVFSP6munA2N6XOTqyJoqG9h1U8zfWONsRNrlY4gLnMapLSGN8TFOq3ARAf0IFq3qlcf-avJ-vBoi9QzenWKFOJANwTlWStxtRan7j217qnFjwZWJTw_Sq5zx3rrUumVnjL"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 max-w-[1440px] mx-auto w-full">
+<!-- Sidebar Navigation -->
+<aside class="w-72 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hidden lg:block overflow-y-auto">
+<div class="p-6">
+<h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Notification Center</h3>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">group</span>
+                            Classroom Activity
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors active-sidebar-item" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+                            Quiz Results
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+                            Student Milestones
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">error</span>
+                            System Alerts
+                        </a>
+</nav>
+<h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-10 mb-4">Preferences</h3>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">mail</span>
+                            Email Digest
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">devices</span>
+                            Connected Devices
+                        </a>
+</nav>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 p-8 overflow-y-auto">
+<div class="max-w-4xl">
+<div class="flex items-end justify-between mb-8">
+<div>
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white">Notification Settings</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-2">Manage how and when you want to be notified about student progress and quiz performance.</p>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white font-bold py-2.5 px-6 rounded-lg transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+<span>Save All Changes</span>
+</button>
+</div>
+<!-- Category: Quiz Performance -->
+<section class="space-y-6">
+<div class="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h2 class="text-xl font-bold text-slate-800 dark:text-slate-200">Quiz Performance Alerts</h2>
+</div>
+<div class="space-y-4">
+<!-- Toggle 1 -->
+<div class="flex items-start justify-between p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md">
+<div class="flex-1 pr-4">
+<h4 class="font-semibold text-slate-900 dark:text-white">Real-time Completion Alert</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Receive an immediate notification the moment a student submits their quiz attempt.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer mt-1">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Alert with Dropdown -->
+<div class="flex items-start justify-between p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md">
+<div class="flex-1 pr-4">
+<h4 class="font-semibold text-slate-900 dark:text-white">Class Performance Threshold</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Notify me when the average score of a class quiz falls below a specific mark.</p>
+<div class="mt-4 flex items-center gap-3">
+<span class="text-xs font-medium text-slate-400 uppercase">Threshold:</span>
+<select class="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-sm rounded-lg py-1 px-3 focus:ring-primary focus:border-primary">
+<option>40%</option>
+<option>50%</option>
+<option selected="">60%</option>
+<option>70%</option>
+</select>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer mt-1">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Integration Sync Alert -->
+<div class="flex items-start justify-between p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md">
+<div class="flex-1 pr-4">
+<div class="flex items-center gap-2">
+<h4 class="font-semibold text-slate-900 dark:text-white">Daily Google Classroom Sync Summary</h4>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 uppercase">Sync</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">A daily wrap-up of all imported students and grades from your linked Classroom account.</p>
+<div class="mt-4 flex items-center gap-3">
+<span class="text-xs font-medium text-slate-400 uppercase">Send Time:</span>
+<input class="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-sm rounded-lg py-1 px-3 focus:ring-primary focus:border-primary" type="time" value="08:00"/>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer mt-1">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Category: Gamification & Milestones -->
+<section class="mt-12 space-y-6">
+<div class="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
+<span class="material-symbols-outlined text-primary">military_tech</span>
+<h2 class="text-xl font-bold text-slate-800 dark:text-slate-200">Student Milestones</h2>
+</div>
+<div class="space-y-4">
+<div class="flex items-start justify-between p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md">
+<div class="flex-1 pr-4">
+<h4 class="font-semibold text-slate-900 dark:text-white">Rare Achievement Alert</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Be the first to congratulate a student when they earn a rare or legendary achievement badge.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer mt-1">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Delivery Method Matrix -->
+<section class="mt-12 space-y-6 mb-20">
+<div class="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
+<span class="material-symbols-outlined text-primary">send</span>
+<h2 class="text-xl font-bold text-slate-800 dark:text-slate-200">Delivery Methods</h2>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Notification Type</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">In-App</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Email</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-center">Browser Push</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+<tr>
+<td class="px-6 py-4 text-sm font-medium text-slate-700 dark:text-slate-300">Classroom Updates</td>
+<td class="px-6 py-4 text-center"><input checked="" class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/></td>
+<td class="px-6 py-4 text-center"><input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/></td>
+<td class="px-6 py-4 text-center"><input checked="" class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/></td>
+</tr>
+<tr>
+<td class="px-6 py-4 text-sm font-medium text-slate-700 dark:text-slate-300">Quiz Results</td>
+<td class="px-6 py-4 text-center"><input checked="" class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/></td>
+<td class="px-6 py-4 text-center"><input checked="" class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/></td>
+<td class="px-6 py-4 text-center"><input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/></td>
+</tr>
+<tr>
+<td class="px-6 py-4 text-sm font-medium text-slate-700 dark:text-slate-300">System Maintenance</td>
+<td class="px-6 py-4 text-center"><input checked="" class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/></td>
+<td class="px-6 py-4 text-center"><input checked="" class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/></td>
+<td class="px-6 py-4 text-center"><input checked="" class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Sticky Mobile Actions -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-4 flex gap-3">
+<button class="flex-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold py-3 rounded-lg">Reset</button>
+<button class="flex-1 bg-primary text-white font-bold py-3 rounded-lg shadow-lg shadow-primary/20">Save All</button>
+</div>
+</div>
+</body></html>

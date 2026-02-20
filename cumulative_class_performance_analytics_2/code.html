@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Performance Analytics (Dark Mode)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        @config {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "neon-cyan": "#00f2ff",
+                        "neon-purple": "#bc13fe",
+                        "background-dark": "#0a0f18",
+                        "surface-dark": "#161c28",
+                        "surface-lighter": "#1e2636",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }.chart-line-cyan {
+            filter: drop-shadow(0 0 4px rgba(0, 242, 255, 0.6));
+        }
+        .chart-line-purple {
+            filter: drop-shadow(0 0 4px rgba(188, 19, 254, 0.6));
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-slate-100 min-h-screen font-display">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="flex items-center justify-between border-b border-slate-800 bg-[#0d121f] px-6 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl">quiz</span>
+<h2 class="text-white text-lg font-bold tracking-tight">Quiz Analytics</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">Classes</a>
+<a class="text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Quizzes</a>
+<a class="text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xl">search</span>
+<input class="bg-slate-800/50 border-slate-700 text-white rounded-lg pl-10 pr-4 py-2 text-sm w-64 focus:ring-2 focus:ring-primary outline-none border" placeholder="Search student or quiz..." type="text"/>
+</div>
+<button class="p-2 text-slate-400 hover:bg-slate-800 rounded-lg relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-[#0d121f]"></span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD88I7tjV0iXL0XPOxvZQzKN7pIKs_n4ytZUGsXBLjbljFF_5TMrorZ-qGia0hYavUNAw3tXznDXiTBBUA16yf7lp9-gtzqzCJjigIsEcg3Wtuw-nw6d1T45aEqwxcRKb5vwdrE5aXCCFGbe_clUvPuv6PtAdRiIkXl-1oH_BlDbUmziFerXRh4J1_90iZ3vDDqu086K8mGcfOO5yTlxAsIZ-zNzt1E67lXMuaTwYcWWxLqgeBPVaLCf72qH5BCH4_j06f86Z7tkIMS"/>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-[1440px] mx-auto w-full p-6 lg:p-10">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+<div class="space-y-1">
+<h1 class="text-3xl lg:text-4xl font-black text-white tracking-tight">Cumulative Class Performance Analytics</h1>
+<div class="flex items-center gap-2 text-slate-400 text-sm">
+<span class="material-symbols-outlined text-base">sync</span>
+<p>Last synced with Classroom: 2 minutes ago</p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<button class="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">sync</span>
+                    Force Sync
+                </button>
+<button class="bg-slate-800 border border-slate-700 text-slate-200 px-5 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-slate-700 transition-all">
+<span class="material-symbols-outlined text-lg">ios_share</span>
+                    Export CSV
+                </button>
+</div>
+</div>
+<div class="bg-surface-dark border border-slate-800 p-4 rounded-xl mb-8 flex flex-wrap items-center gap-6">
+<div class="flex flex-col min-w-[240px]">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Select Class Group</span>
+<div class="relative">
+<select class="w-full appearance-none bg-background-dark border border-slate-700 rounded-lg px-4 py-2.5 text-sm font-semibold text-white focus:ring-2 focus:ring-primary outline-none pr-10">
+<option>Grade 11 - Advanced Biology (A)</option>
+<option>Grade 11 - General Science (B)</option>
+<option>Grade 12 - AP Biology (C)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col min-w-[240px]">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Date Range</span>
+<div class="relative">
+<button class="w-full flex items-center justify-between bg-background-dark border border-slate-700 rounded-lg px-4 py-2.5 text-sm font-semibold text-white focus:ring-2 focus:ring-primary outline-none">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-500 text-lg">calendar_today</span>
+                            Oct 1, 2023 - Oct 31, 2023
+                        </span>
+<span class="material-symbols-outlined text-slate-500">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-8 space-y-8">
+<div class="bg-surface-dark border border-slate-800 rounded-xl p-6">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-lg font-bold text-white">Class Average Performance Over Time</h3>
+<p class="text-sm text-slate-500">Comparing class vs. state average</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-neon-cyan shadow-[0_0_8px_#00f2ff]"></span>
+<span class="text-xs font-bold text-slate-400">Class Avg</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-neon-purple shadow-[0_0_8px_#bc13fe]"></span>
+<span class="text-xs font-bold text-slate-400">State Avg</span>
+</div>
+</div>
+</div>
+<div class="h-64 w-full relative">
+<div class="absolute inset-0 flex items-end">
+<svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+<path class="chart-line-cyan" d="M 0 70 L 14.2 55 L 28.4 62 L 42.6 45 L 56.8 30 L 71 20 L 85.2 35 L 100 15" fill="none" stroke="#00f2ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<path class="chart-line-purple" d="M 0 85 L 14.2 78 L 28.4 80 L 42.6 72 L 56.8 68 L 71 65 L 85.2 60 L 100 58" fill="none" stroke="#bc13fe" stroke-dasharray="0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+<div class="absolute left-[71%] bottom-[80%] -translate-x-1/2 group z-10">
+<div class="w-3 h-3 bg-neon-cyan border-2 border-white rounded-full shadow-[0_0_10px_#00f2ff]"></div>
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 border border-slate-700 p-2 rounded-lg text-[10px] whitespace-nowrap shadow-2xl">
+<div class="font-bold text-white mb-1">Quiz 6 Result</div>
+<div class="flex items-center justify-between gap-4">
+<span class="text-slate-400">Class:</span>
+<span class="text-neon-cyan font-bold">82%</span>
+</div>
+<div class="flex items-center justify-between gap-4">
+<span class="text-slate-400">State:</span>
+<span class="text-neon-purple font-bold">65%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-10">
+<div class="border-t border-slate-400 w-full"></div>
+<div class="border-t border-slate-400 w-full"></div>
+<div class="border-t border-slate-400 w-full"></div>
+<div class="border-t border-slate-400 w-full"></div>
+<div class="border-t border-slate-400 w-full"></div>
+</div>
+</div>
+<div class="flex justify-between mt-6 px-0 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+<span>Quiz 1</span><span>Quiz 2</span><span>Quiz 3</span><span>Quiz 4</span><span>Quiz 5</span><span>Quiz 6</span><span>Quiz 7</span><span>Quiz 8</span>
+</div>
+</div>
+<div class="bg-surface-dark border border-slate-800 rounded-xl overflow-hidden">
+<div class="p-6 border-b border-slate-800 flex items-center justify-between">
+<h3 class="text-lg font-bold text-white">Student Progress</h3>
+<div class="flex gap-2">
+<button class="text-xs font-bold bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 hover:bg-slate-700 transition-colors">Filter</button>
+<button class="text-xs font-bold bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 hover:bg-slate-700 transition-colors">Sort</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-slate-900/50 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+<th class="px-6 py-4">Student Name</th>
+<th class="px-6 py-4 text-center">Quizzes</th>
+<th class="px-6 py-4">Average Score</th>
+<th class="px-6 py-4">Trend</th>
+<th class="px-6 py-4 text-right">Sync Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-800">
+<tr class="bg-surface-dark hover:bg-surface-lighter transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-9 w-9 rounded-full bg-blue-900/30 overflow-hidden flex-shrink-0">
+<img alt="Student" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN1rwtQUTcW4Wq04I_7SbLMwu94RuaH-DAjmlpLruQd0kZ8ySYSgfc_HSqRwDFZqKAuXBVj9ztviOYX4Xpd-o5TLKym7OVXQ6g9q3cOb55tJIKjfzcVsNF_4j9tiCkcWsJxIhWh89z9aHSvrLrgIQnNJKNyFYHUt3SnaYxTf_dT69dWEWufZZ5rdTwHXNTBvkjhE8oYcWFrBORVj476BhqNduBoV6UWvsBQtGrDjqcSu06GBX6e3muT0U0guRZ-usk3prkIEY-R6Fz"/>
+</div>
+<span class="font-semibold text-sm text-slate-200">Alex Johnson</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium text-slate-300">12 / 12</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-neon-cyan w-[94%] rounded-full shadow-[0_0_8px_#00f2ff]"></div>
+</div>
+<span class="text-sm font-bold w-8 text-right text-slate-200">94%</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-green-400 flex items-center gap-1 font-bold text-xs">
+<span class="material-symbols-outlined text-sm">arrow_upward</span>
+                                            5.2%
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined text-green-400 text-xl" title="Synced with Classroom">check_circle</span>
+</td>
+</tr>
+<tr class="bg-surface-dark hover:bg-surface-lighter transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-9 w-9 rounded-full bg-purple-900/30 overflow-hidden flex-shrink-0">
+<img alt="Student" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdMy9KYlIF7t3CSGLUIo45ehuE3ybk6NozpELG9LfTEXmmPOkzKaDxX8D80xwZ7Sna-_YFMiLzKrPR_l2HrYkIyC6pIYKfO128_Vn3FzwSXG2SlcqxSnNqoT8QB12YuZty2dPTo_gNb1sQyOEhPrFQpZqJY9EdaL56J7qmMomeuoPkklBT4XX4YiTPr0hBxPeUq_DEt3hsrRutlDi6yvH4yxPLwr-UiV3Np-evumKqGT3hCphAhia68ExwzWrbEtp0Drv7It5wtYdv"/>
+</div>
+<span class="font-semibold text-sm text-slate-200">Sarah Miller</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium text-slate-300">10 / 12</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-neon-cyan w-[78%] rounded-full shadow-[0_0_8px_#00f2ff]"></div>
+</div>
+<span class="text-sm font-bold w-8 text-right text-slate-200">78%</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-red-400 flex items-center gap-1 font-bold text-xs">
+<span class="material-symbols-outlined text-sm">arrow_downward</span>
+                                            2.1%
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined text-slate-500 text-xl" title="Sync pending">pending</span>
+</td>
+</tr>
+<tr class="bg-surface-dark hover:bg-surface-lighter transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-9 w-9 rounded-full bg-amber-900/30 overflow-hidden flex-shrink-0">
+<img alt="Student" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRJAjfmruCUGGt3_J73HxQr5pCeYzrzF6cYvNNNGkqggEzsJgQgIacMkaOPynhEPLjRK_WJWFGdNGPxS7KF4yxIICIAQwR7SP1SW3DfAlO4sQOpYvw9LaGEHB8UvYZgj4daUFnAA2IlHJCXe98W3dtt2rzPqsny2vySvjyGn_BjvCidrtHpfjazgsv2RAB1o87z9J3rInzpVrHfnCWqqThsTnTu-ZcZSld7Te3u2USY9EscixMUcrrpFDNVgM0hrE1VKuSKKecyZfN"/>
+</div>
+<span class="font-semibold text-sm text-slate-200">Leo Rodriguez</span>
+</div>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium text-slate-300">12 / 12</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-neon-cyan w-[85%] rounded-full shadow-[0_0_8px_#00f2ff]"></div>
+</div>
+<span class="text-sm font-bold w-8 text-right text-slate-200">85%</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-green-400 flex items-center gap-1 font-bold text-xs">
+<span class="material-symbols-outlined text-sm">arrow_upward</span>
+                                            1.5%
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined text-green-400 text-xl">check_circle</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-slate-800 flex justify-center bg-slate-900/30">
+<button class="text-primary font-bold text-sm hover:text-white transition-colors">View All 28 Students</button>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-gradient-to-br from-primary to-blue-800 rounded-xl p-6 text-white shadow-xl shadow-primary/10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-yellow-300">verified</span>
+<h3 class="font-bold text-lg">Quick Insights</h3>
+</div>
+<div class="space-y-4">
+<div class="bg-black/20 rounded-lg p-4 border border-white/10">
+<p class="text-xs font-bold uppercase tracking-widest opacity-70 mb-2">Most Improved Student</p>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full border-2 border-white/20 p-0.5">
+<img alt="Emma" class="w-full h-full rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIOyJDpybfPfxNg7GtF2IZ3EJNRfxpKABCChAHabn9UIAG3Q8mtkgJm0ke32sW3Wh1rOSN2snQ_B5M2YnhRJFUhY7RlyXQm6JeT2LmOqs85ldEiAcsIHIZrzUMvtunt4md1QAC1_wcGt_bKqEaKRkFc_3QkDqRMB1rHPQp8d-2OpVdOSsrLLh6GeCoHxp4iVIo4ACZV2vy5aihXtb3UI3NBXVw12fcpQeN-wqg08ibAo3ByWWmBFh7FmViRokxt6TPZ3r-lqTnCEKe"/>
+</div>
+<div>
+<p class="font-bold">Emma Watson</p>
+<p class="text-xs opacity-80">+18% avg increase this month</p>
+</div>
+</div>
+</div>
+<div class="bg-black/20 rounded-lg p-4 border border-white/10">
+<p class="text-xs font-bold uppercase tracking-widest opacity-70 mb-2">Class Strength</p>
+<p class="text-xl font-black">Data Interpretation</p>
+<p class="text-xs opacity-80">94% average accuracy across group</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-dark border border-slate-800 rounded-xl p-6">
+<h3 class="font-bold text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500">warning</span>
+                        Top Challenging Topics
+                    </h3>
+<div class="space-y-4">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center text-sm">
+<span class="font-semibold text-slate-300">Cell Division (Mitosis)</span>
+<span class="text-red-400 font-bold">42% Accuracy</span>
+</div>
+<div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-red-500 w-[42%]"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center text-sm">
+<span class="font-semibold text-slate-300">Photosynthesis Stages</span>
+<span class="text-amber-400 font-bold">58% Accuracy</span>
+</div>
+<div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 w-[58%]"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center text-sm">
+<span class="font-semibold text-slate-300">Genetic Mapping</span>
+<span class="text-amber-400 font-bold">61% Accuracy</span>
+</div>
+<div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 w-[61%]"></div>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2.5 bg-slate-800 hover:bg-primary text-slate-200 hover:text-white transition-all font-bold text-sm rounded-lg border border-slate-700">
+                        Create Review Quiz
+                    </button>
+</div>
+<div class="bg-surface-dark border border-slate-800 rounded-xl p-6">
+<h3 class="font-bold text-white mb-4">Upcoming Schedule</h3>
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="flex flex-col items-center justify-center bg-slate-800 h-12 w-12 rounded-lg shrink-0 border border-slate-700">
+<span class="text-[10px] font-bold uppercase text-slate-500">Oct</span>
+<span class="text-lg font-black leading-tight text-white">28</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-200">End of Term Exam</p>
+<p class="text-xs text-slate-500">Unit 1 - 4 Comprehensive</p>
+</div>
+</div>
+<div class="flex gap-4 opacity-60">
+<div class="flex flex-col items-center justify-center bg-slate-800 h-12 w-12 rounded-lg shrink-0 border border-slate-700">
+<span class="text-[10px] font-bold uppercase text-slate-500">Nov</span>
+<span class="text-lg font-black leading-tight text-white">02</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-200">Lab Report Submission</p>
+<p class="text-xs text-slate-500">Enzyme Activity Study</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto border-t border-slate-800 bg-[#0d121f] py-6 px-10 text-center text-sm text-slate-500">
+<p>© 2023 Quiz Analytics Platform • Integrated with Google Classroom</p>
+</footer>
+</div>
+
+</body></html>

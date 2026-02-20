@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>QuizAI | Empower Your Classroom</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "accent-purple": "#a855f7",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0f172a",
+                        "card-dark": "#1e293b"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(37, 106, 244, 0.15) 0%, transparent 50%);
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(37, 106, 244, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary/30">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 glass-nav">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="bg-primary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-white text-2xl">auto_awesome</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">QuizAI</span>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Features</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Integrations</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Gamification</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Pricing</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-sm font-semibold px-4 py-2 hover:text-primary transition-colors">Login</button>
+<button class="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
+                    Get Started Free
+                </button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 overflow-hidden hero-gradient">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="flex flex-col gap-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
+<span class="material-symbols-outlined text-primary text-sm">bolt</span>
+<span class="text-xs font-bold text-primary uppercase tracking-wider">AI-Powered Education</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-slate-900 dark:text-white">
+                    Empower Your Classroom with <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-purple">AI-Driven</span> Activities
+                </h1>
+<p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl">
+                    Transform PDFs and YouTube videos into interactive quizzes instantly. Seamlessly sync with Google Classroom to engage your students like never before.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all flex items-center justify-center gap-3 neon-border">
+<img alt="Google Classroom" class="w-6 h-6" data-alt="Google Classroom logo for integration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGaxrILXcxhEU_sppZvviHSNj1Qqh9kuJiav_G1PTZTvpJR5iSZ-nJE90m24YNV80ePeqG5KfiN6ecTTbAvCVoXFOCy1uFpEjEv_E0m6f6eKpSwH4mUQcMgf0tb70GZti4FUpvO_NOymSsYthU03O04JkM9FuuCG9rw8TQol748nX8TH2jyF2xmu_K68mK-7ajgsyX68zJJ8tM2FQ1Vy_LZEIRemvMuBnssXH8cwo4RUgEZns57N0f5TgO5HzBiWWm3kOtAD7tGWsI"/>
+                        Get Started with Google Classroom
+                    </button>
+</div>
+<div class="flex items-center gap-4 text-sm text-slate-500">
+<div class="flex -space-x-2">
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-background-dark" data-alt="Profile picture of a teacher user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdJGejFCK6BwkcLbw1-SLs2_HrRvCsYlCN6LjkDVCTjKdr-lHi7uNzks1IvtccfItd5-LBYqTMUVZnfutx8mUbztcf-ssPkL_6iq_wHOfc40hovbHF9upNSpbIbVOyrsWjKh-rRDl4ZUYq-4AOQheq7GpODQ7OT6i0_xoShpjy2ksFbtWoLl3jW6xI9yflKCoqJYBjSgoJ_XxBzc1F9sBiN9cqbeBp7e5MyarF42-zkIbK_uxdMMBhgyPlmZzRIQt6JOxbzoIazVKH"/>
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-background-dark" data-alt="Profile picture of a teacher user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0plz5e64xYCtg9nDcyhb0VYQdWUnS5bRCyodJIp2LCVxoYuM1bF6YUGvvgAVrrzPzOvsvi3nSnzthkRyvGgnSzqwMvYysYN4UAnd6nZbnVjRAgbQZtYHTijlE1u53dIsvTRolOGjKy8Z9_zNWEUChv_2gZiscqsUcz3WdkK9VtcvDwbIgrL3T3jKI0lZ3rjibIi6W_XTu5O1bNSiJt1xbYq_hB8b9wMWhFTsAfvxyNMRFvC9qzfGEzds-86RfOn4tk3zOBB5sIj7D"/>
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-background-dark" data-alt="Profile picture of a teacher user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnNNsbCu6_6psD1xBqsY09rhGqGAZRC8_wqK0EOqDAps2diXtjPEc0hHSzqAqk45Zs4w-XwXXJFho7uYwmJO07XDjtdpbPEhARH1m0jQWf__mo7au10TMaK2COrCDYDm1D3L326yK9SecyZj_qLOu34hf2UU0jFP62Ke8adoPVluNpBX3QcyhSs3Hn75Eo95TDDp_42C8SK75Kd71j9Ouc6IBkhv-Bxd9e0KOzvTJ5UuJrpOC7lZvJO3Kz02TUkU_jYeR34kPYtCFP"/>
+</div>
+<span>Trusted by 50,000+ teachers worldwide</span>
+</div>
+</div>
+<div class="relative">
+<div class="w-full aspect-square bg-gradient-to-tr from-primary/20 to-accent-purple/20 rounded-3xl border border-white/10 flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+<img alt="Education Illustration" class="w-[80%] drop-shadow-2xl rounded-2xl" data-alt="3D floating educational icons and graduation cap" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBh1--DIlOG_rvUSiyuSq__uxUbkAA37dcyYsgTA2SRFnWpXhuvvs-eYgkXdOxWT0rnLOZmw458PEpeCv0ly0FsKjV3yLu8GvJXXznKsbs70VAIJkM_ikheh2BM1yIl_ZUJTN8kivMqs9tOIwL6wbMHHZcsXrVySmEF2pkgsKC2wdy4DyQBHZfVaTbIsWmWcMPWRvTIXdd6FxFwM3L6SSqRvOGdorw4sAh0D3K7OV9lV1AR9JqK_f_t_uKubOtykmtG0AhKaOpDWkO"/>
+</div>
+<!-- Floating Stats -->
+<div class="absolute -bottom-6 -left-6 bg-card-dark p-4 rounded-xl border border-white/10 shadow-2xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-green-500">trending_up</span>
+</div>
+<div>
+<p class="text-xs text-slate-400">Student Engagement</p>
+<p class="text-xl font-bold">+95%</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Create in Seconds Section -->
+<section class="py-24 bg-white/5 dark:bg-slate-900/50">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-5xl font-bold mb-4">Create in Seconds</h2>
+<p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">Our AI engine does the heavy lifting. Turn any static content into a dynamic learning experience with one click.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="bg-card-dark p-8 rounded-2xl border border-white/5 hover:border-primary/50 transition-all group">
+<div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">picture_as_pdf</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">PDF to Quiz</h3>
+<p class="text-slate-400 mb-6">Upload lecture notes, textbooks, or worksheets. Our AI extracts key concepts and generates multiple-choice or open-ended questions instantly.</p>
+<div class="bg-slate-800/50 border border-dashed border-slate-700 rounded-lg p-10 text-center cursor-pointer hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-4xl text-slate-500 mb-2">cloud_upload</span>
+<p class="text-sm font-medium text-slate-400">Drag and drop your PDF here</p>
+</div>
+</div>
+<div class="bg-card-dark p-8 rounded-2xl border border-white/5 hover:border-accent-purple/50 transition-all group">
+<div class="w-14 h-14 bg-accent-purple/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-accent-purple text-3xl">smart_display</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">YouTube to Interactive</h3>
+<p class="text-slate-400 mb-6">Paste a YouTube URL and let AI watch it for you. It creates time-stamped checkpoints and comprehension questions automatically.</p>
+<div class="flex gap-2">
+<input class="flex-1 bg-slate-800 border-slate-700 rounded-lg focus:ring-accent-purple focus:border-accent-purple text-sm" placeholder="https://youtube.com/watch?v=..." type="text"/>
+<button class="bg-accent-purple text-white px-4 py-2 rounded-lg font-bold text-sm">Generate</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Learning Activities -->
+<section class="py-24">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Interactive Learning Activities</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Activity Card 1 -->
+<div class="bg-card-dark rounded-xl overflow-hidden border border-white/5 group hover:-translate-y-2 transition-all">
+<div class="h-48 bg-gradient-to-br from-blue-600 to-primary flex items-center justify-center overflow-hidden">
+<img alt="Activity" class="w-full h-full object-cover mix-blend-overlay opacity-60" data-alt="Abstract illustration of drag and drop interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBct38j9-QuJSsaZvF1fd9Q_sqbMQ7csSMCWsakDgio8jC2KMOBWeaYc0pfCX1UaWAU4Dgk49MMuIXrbyNp8ueth32IEWMp4kRcN4e7X2TrvXxw5MXrj_8R7Z2qWlpr5K0SAcguYQ3GzjECRO51Vicxnss-c31EJ34SiIxd35Ufx_vItG6YXM98IshMzwEAIX-quzQXApgbnoKi2EXWQnf2u4vJjJ-J_uk7aVrWOl3xupsYx4s1zY9Q8UMiIIR27zc6tGfiwOjzegqG"/>
+<span class="material-symbols-outlined text-white text-6xl absolute">drag_pan</span>
+</div>
+<div class="p-6">
+<h4 class="text-xl font-bold mb-2">Drag &amp; Drop</h4>
+<p class="text-slate-400 text-sm">Label diagrams, categorize concepts, or order processes with intuitive drag-and-drop mechanics.</p>
+</div>
+</div>
+<!-- Activity Card 2 -->
+<div class="bg-card-dark rounded-xl overflow-hidden border border-white/5 group hover:-translate-y-2 transition-all">
+<div class="h-48 bg-gradient-to-br from-purple-600 to-accent-purple flex items-center justify-center overflow-hidden">
+<img alt="Activity" class="w-full h-full object-cover mix-blend-overlay opacity-60" data-alt="Two elements being matched or compared" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQQnwwtBLdTS52W2KVSm5BS2CQKagVBS2EmtiR1jnDkwne0d_ecAEn6nBTyQLVpK25gMaGp92qXwfgxMcuSv8z61-rIk5CxRFy3eYABte0NwKuxGd5Cra6nNdWs28N0F38JHXC_qbrMY5_vE7hDCULCdt2RMFjch89FpnuBm-vy-oRDhSywErvv7XOHE9vBsa-7nt2Wzib1NI7BYrYy-qLWdZNkmm9aTioBkQp8x-c1i8Dp1EmscUg41MUhov_7fHaoLEMhY-CgoU8"/>
+<span class="material-symbols-outlined text-white text-6xl absolute">rule</span>
+</div>
+<div class="p-6">
+<h4 class="text-xl font-bold mb-2">Matching Pairs</h4>
+<p class="text-slate-400 text-sm">Classic vocabulary and definition matching with a modern, responsive interface for any device.</p>
+</div>
+</div>
+<!-- Activity Card 3 -->
+<div class="bg-card-dark rounded-xl overflow-hidden border border-white/5 group hover:-translate-y-2 transition-all">
+<div class="h-48 bg-gradient-to-br from-pink-600 to-rose-500 flex items-center justify-center overflow-hidden">
+<img alt="Activity" class="w-full h-full object-cover mix-blend-overlay opacity-60" data-alt="Video player screen with interactive quiz markers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwJ7sP5ycn4Cbl5m5MAN2rWEJT5NkLgvPSzemgXRImFDqFLxkLFVAa8vIgLtw0GZmZr_tdcK-Fxvvzt9J2tanPkqthPcPfqPcE7vihZRtF21uFbG-HOZ2AefeiFePDj31KCJMDhyVD8jAs44Wbc55E-srylzj7fDzOuYUlCRp86ChfaQ96E7IeXIbZM917xTG2ekTCfQMdf2fViPo4NJtHSFTLOc9YObthcMTOmBG2WesZ_b_TiiXrFp_k0rmvCBntvz4RZVprXoC8"/>
+<span class="material-symbols-outlined text-white text-6xl absolute">video_library</span>
+</div>
+<div class="p-6">
+<h4 class="text-xl font-bold mb-2">Videoquizzes</h4>
+<p class="text-slate-400 text-sm">Embed questions directly into video timelines to ensure students stay focused and grasp key points.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Seamless Integration -->
+<section class="py-24 bg-primary/5">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1 relative">
+<div class="bg-card-dark rounded-2xl border border-white/10 p-2 shadow-2xl">
+<div class="bg-slate-900 rounded-xl p-6 border border-white/5">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-3">
+<img alt="Classroom" class="w-8 h-8" data-alt="Google Classroom icon small" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa0IAOJ4q-JNc-iQ7lvU-fia2eNYpetn0AuH58xYNAQOqLZoj1bp8cpfDyxXnblzTHL8ofORxy7ijOVNIB6PSzX8FpcfnN7yWSy9-fXOkwSwfiljtIpPc2mfZ0UXWZ_igHIl1aLvS5F7DUDSopYQN4BkDYbcklEiFUvrHS4mpOV3YVqOxyodl3so0rYikE2-2sBx_-zsubsluk10Wc_emyNDVDHjY00GRl2K_ic9f-eDCRDF9OJIJlMf8fKk0OwUMKGMzhIXR42HPN"/>
+<span class="font-bold">Google Classroom Sync</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-green-500/10 rounded-full">
+<div class="w-2 h-2 bg-green-500 rounded-full"></div>
+<span class="text-[10px] text-green-500 font-bold">CONNECTED</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">group</span>
+<span class="text-sm">Roster Syncing...</span>
+</div>
+<span class="text-xs text-slate-500">24 Students</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">grade</span>
+<span class="text-sm">Gradebook Update</span>
+</div>
+<span class="text-xs text-slate-500">Auto-post</span>
+</div>
+<div class="w-full bg-primary h-10 rounded-lg flex items-center justify-center text-sm font-bold gap-2">
+<span class="material-symbols-outlined text-sm">sync</span>
+                                    Push to Classroom
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 flex flex-col gap-6">
+<h2 class="text-4xl font-bold leading-tight">Seamless Integration with Your Workflow</h2>
+<p class="text-slate-400 text-lg">Don't waste time managing multiple platforms. Sync your class rosters and automatically push grades back to Google Classroom with a single click.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span>Automatic student account creation</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span>Direct assignment posting to Stream</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span>Real-time gradebook synchronization</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Gamification Section -->
+<section class="py-24 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-96 h-96 bg-accent-purple/10 blur-[100px] -z-10"></div>
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col items-center text-center mb-16">
+<div class="w-16 h-16 bg-gradient-to-tr from-orange-400 to-yellow-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/20">
+<span class="material-symbols-outlined text-white text-4xl">workspace_premium</span>
+</div>
+<h2 class="text-4xl font-bold mb-4">Turn Learning into a Game</h2>
+<p class="text-slate-400 max-w-2xl">Motivate your students with competitive leaderboards, unlockable badges, and streak rewards that make studying addictive.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Badge 1 -->
+<div class="bg-card-dark p-6 rounded-2xl border border-white/5 text-center flex flex-col items-center">
+<div class="w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-indigo-500 to-primary p-1">
+<div class="w-full h-full rounded-full bg-card-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl">local_fire_department</span>
+</div>
+</div>
+<h5 class="font-bold text-lg">5-Day Streak</h5>
+<p class="text-xs text-slate-500 mt-1">Daily engagement bonus</p>
+</div>
+<!-- Badge 2 -->
+<div class="bg-card-dark p-6 rounded-2xl border border-white/5 text-center flex flex-col items-center">
+<div class="w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 p-1">
+<div class="w-full h-full rounded-full bg-card-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-yellow-500 text-4xl">emoji_events</span>
+</div>
+</div>
+<h5 class="font-bold text-lg">Top 1% Class</h5>
+<p class="text-xs text-slate-500 mt-1">Mastery leaderboard</p>
+</div>
+<!-- Badge 3 -->
+<div class="bg-card-dark p-6 rounded-2xl border border-white/5 text-center flex flex-col items-center">
+<div class="w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 p-1">
+<div class="w-full h-full rounded-full bg-card-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-500 text-4xl">verified</span>
+</div>
+</div>
+<h5 class="font-bold text-lg">Subject Pro</h5>
+<p class="text-xs text-slate-500 mt-1">Topic mastery achieved</p>
+</div>
+<!-- Leaderboard Mockup -->
+<div class="bg-card-dark p-6 rounded-2xl border border-white/5 col-span-1 md:col-span-2 lg:col-span-1">
+<h5 class="font-bold mb-4 text-sm flex items-center justify-between">
+                        Class Leaderboard
+                        <span class="text-xs text-primary">View All</span>
+</h5>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs text-slate-500 w-4">1</span>
+<div class="w-6 h-6 rounded-full bg-blue-500"></div>
+<span class="text-xs">Alex J.</span>
+</div>
+<span class="text-xs font-bold">2,450 pts</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs text-slate-500 w-4">2</span>
+<div class="w-6 h-6 rounded-full bg-purple-500"></div>
+<span class="text-xs">Maria S.</span>
+</div>
+<span class="text-xs font-bold">2,120 pts</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs text-slate-500 w-4">3</span>
+<div class="w-6 h-6 rounded-full bg-pink-500"></div>
+<span class="text-xs">Kevin D.</span>
+</div>
+<span class="text-xs font-bold">1,890 pts</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 max-w-7xl mx-auto px-6">
+<div class="bg-gradient-to-br from-primary to-accent-purple rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden">
+<div class="absolute inset-0 bg-black/20"></div>
+<div class="relative z-10 flex flex-col items-center gap-8">
+<h2 class="text-4xl md:text-6xl font-bold text-white max-w-3xl">Ready to transform your classroom?</h2>
+<p class="text-white/80 text-lg md:text-xl max-w-xl">Join 50k+ educators and start creating AI-powered activities for free today.</p>
+<div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+<button class="bg-white text-primary px-10 py-5 rounded-2xl text-xl font-bold hover:bg-slate-50 transition-all shadow-xl">Try for Free</button>
+<button class="bg-black/20 text-white backdrop-blur-md border border-white/20 px-10 py-5 rounded-2xl text-xl font-bold hover:bg-black/30 transition-all">Request Demo</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="py-20 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
+<div class="col-span-2 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<div class="bg-primary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-white text-xl">auto_awesome</span>
+</div>
+<span class="text-xl font-bold tracking-tight">QuizAI</span>
+</div>
+<p class="text-slate-500 text-sm leading-relaxed">Making educational content creation effortless for the modern classroom using next-generation AI technology.</p>
+</div>
+<div>
+<h6 class="font-bold mb-6">Platform</h6>
+<ul class="space-y-4 text-slate-500 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">AI Generator</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Integrations</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Gamification</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Student Mode</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-bold mb-6">Company</h6>
+<ul class="space-y-4 text-slate-500 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-bold mb-6">Connect</h6>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">share</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">chat</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">mail</span>
+</a>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 pt-8 border-t border-white/5 text-center md:text-left">
+<p class="text-slate-500 text-xs">© 2024 QuizAI Education Tech. Built with AI for future generations.</p>
+</div>
+</footer>
+</body></html>

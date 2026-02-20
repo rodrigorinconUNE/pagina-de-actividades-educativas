@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Announcements Feed - QuizPlatform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#256af4",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-3">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between gap-8">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl">quiz</span>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">QuizPlatform</h2>
+</div>
+<div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5 w-80 border border-transparent focus-within:border-primary/50 transition-all">
+<span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-slate-500 dark:text-slate-200" placeholder="Search announcements..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<nav class="hidden lg:flex items-center gap-6 mr-4">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-primary" href="#">Announcements</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">Classes</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">Grades</a>
+</nav>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg relative transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<div class="h-9 w-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center overflow-hidden">
+<img alt="Profile" class="h-full w-full object-cover" data-alt="User profile avatar with a friendly character" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiYwh_sikVx6ArA8hMc4qggDmZ19f62Xc0KzVVdaTHfkG74i0GlF6xcT8yuT3fb_vDN0stE-l3jFiTxMEDRTYX0sVJWl-vpzzhu1uSpmJWskubKPVYJojtGnD8hbZBkpdzPWxUQo-1DY6cSFWjRZ_Swu3AezQRGLUGKdwiJhR1P9-gVVyofr7CJbNWT9Iiw5r_G-4ZcVGw9egIIJdVjSEREOxH5wk35Rd3li3bCDpTeN8V_BEC52oPlggSCycJmm-1m1nNTYsslSWq"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto flex gap-8 px-6 py-8">
+<!-- Left Sidebar Navigation -->
+<aside class="hidden lg:flex flex-col w-64 shrink-0 gap-6">
+<div class="flex flex-col gap-1">
+<p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Google Classroom</p>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">book_4</span>
+<span class="text-sm font-medium">My Classes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="text-sm font-medium">Assignments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="text-sm font-medium">Performance</span>
+</a>
+</div>
+<div class="mt-4 p-4 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 text-primary mb-2">
+<span class="material-symbols-outlined text-sm">sync</span>
+<span class="text-[10px] font-bold uppercase">Last Synced</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Synced 2 mins ago with your Google Classroom courses.</p>
+<button class="mt-3 w-full py-2 text-xs font-bold text-primary bg-primary/10 hover:bg-primary/20 rounded-lg transition-all">
+                    Force Sync
+                </button>
+</div>
+</aside>
+<!-- Main Feed Content -->
+<section class="flex-1 flex flex-col gap-6 max-w-3xl">
+<!-- Header & Filters -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h1 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Announcements</h1>
+<button class="bg-primary hover:bg-primary/90 text-white text-sm font-bold py-2 px-4 rounded-lg flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-lg">add</span>
+                        Join Class
+                    </button>
+</div>
+<div class="flex items-center gap-3 overflow-x-auto pb-2 custom-scrollbar">
+<button class="flex items-center gap-2 shrink-0 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-medium transition-all">
+<span>All Classes</span>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+<button class="flex items-center gap-2 shrink-0 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-medium transition-all">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span>Biology 101</span>
+</button>
+<button class="flex items-center gap-2 shrink-0 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-medium transition-all">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span>
+<span>Advanced Math</span>
+</button>
+<button class="flex items-center gap-2 shrink-0 bg-primary/10 border border-primary/20 px-4 py-2 rounded-lg text-primary text-sm font-medium transition-all">
+<span>Unread</span>
+<span class="bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full">3</span>
+</button>
+</div>
+</div>
+<!-- Feed Stream -->
+<div class="flex flex-col gap-6">
+<!-- Announcement Card 1: Quiz Action -->
+<div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="p-5 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img alt="Teacher" class="h-10 w-10 rounded-lg bg-slate-100 dark:bg-slate-700" data-alt="Professional teacher profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASOvv8vCiYjld31Oj8ryZQXOLHllYfIuvnz71e_eXwOlCKyZjs4hYy4NclKR0GZfk4ohG5a5ngw_IsK7_IPYXFdbZBSZWJFsqEF25R1xx0Eo85a_hEVJ-jfkXjB8iUQ9H0nFS7VzGK0XVnME9-v8SIuzCMOUYO0BRBzLJ95ddsOFq4-t_aOExSSvk6JDN2gCGicPYqV5Go5_-XUlGSc29ITMkqOB-D4nENdrmD613tlummOlBzp49bw4tk65cNYwI85h9EesR8Gh4Q"/>
+<div>
+<h4 class="text-sm font-bold text-slate-900 dark:text-white">Mr. Henderson</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Biology 101 • 2 hours ago</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="text-slate-700 dark:text-slate-300 text-[15px] leading-relaxed">
+                            Hello everyone! I've just posted a new interactive quiz on **Cell Division and Mitosis**. Please complete it before Friday's lab session. Good luck!
+                        </div>
+<!-- Quiz Action Box -->
+<div class="bg-primary/5 border border-primary/20 rounded-xl p-4 flex items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="h-12 w-12 rounded-lg bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-2xl">rocket_launch</span>
+</div>
+<div>
+<h5 class="text-sm font-bold text-slate-900 dark:text-white">Quiz: Cell Structures</h5>
+<p class="text-xs text-slate-500 dark:text-slate-400">15 Questions • 20 Minutes</p>
+</div>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white text-xs font-bold py-2.5 px-6 rounded-lg transition-all">
+                                Start Quiz
+                            </button>
+</div>
+</div>
+<div class="bg-slate-50/50 dark:bg-slate-800/60 px-5 py-3 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 px-2 py-1 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+<span class="text-sm">👍</span>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-400">12</span>
+</button>
+<button class="flex items-center gap-1.5 px-2 py-1 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+<span class="text-sm">❤️</span>
+<span class="text-xs font-medium text-slate-600 dark:text-slate-400">4</span>
+</button>
+</div>
+<button class="flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+<span>3 Comments</span>
+</button>
+</div>
+</div>
+<!-- Announcement Card 2: Attachment -->
+<div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<div class="p-5 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img alt="Teacher" class="h-10 w-10 rounded-lg bg-slate-100 dark:bg-slate-700" data-alt="Friendly female teacher profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWk-xZ4lRywjTDZn8d7nE8v8GuleCdzi8ZJLksDIROG7pFpCfUlrAEDl2nmUl90BTlLa3IFWxclNGcU3oybkQmvTayI1Z6esHRYAh47Ww1MB9WsebVH5tO5g0OqsMVRmLJMYCG5bOJcJgeV2UTqrsXqBevJwpdNBzGwvU_ii1zWRQ9IvRpjJRAxOlD3sW_2emR4JDyqX_F8WzKjnTAh0eCp7UwkPzoqK-4hIlvLsDZypi32S88ySVY2MAafTVhsqq41wI3YDlWWl2e"/>
+<div>
+<h4 class="text-sm font-bold text-slate-900 dark:text-white">Mrs. Sarah Chen</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Advanced Math • 5 hours ago</p>
+</div>
+</div>
+<button class="text-slate-400">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="text-slate-700 dark:text-slate-300 text-[15px] leading-relaxed">
+                            Great work today on the Calculus review. I'm attaching the formula sheet we discussed. Please have this printed or saved for our mock exam next week.
+                        </div>
+<!-- Attachment Box -->
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all group" href="#">
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-900 dark:text-slate-200 truncate">Calculus_Formula_Sheet_v2.pdf</p>
+<p class="text-[10px] text-slate-500 uppercase font-bold">PDF • 2.4 MB</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">download</span>
+</a>
+</div>
+</div>
+<div class="bg-slate-50/50 dark:bg-slate-800/60 px-5 py-3 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+<span class="material-symbols-outlined text-sm">add_reaction</span>
+</button>
+</div>
+<button class="flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-lg">chat_bubble</span>
+<span>Add Comment</span>
+</button>
+</div>
+</div>
+<!-- Announcement Card 3: Google Classroom Sync -->
+<div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm opacity-90">
+<div class="p-5 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900 dark:text-white">History Department</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Synced from Google Classroom • Yesterday</p>
+</div>
+</div>
+</div>
+<div class="text-slate-700 dark:text-slate-300 text-[15px] italic">
+                            "Reminder: The Industrial Revolution essay is due tomorrow by 11:59 PM. Please submit through the Classroom portal."
+                        </div>
+</div>
+<div class="bg-slate-50/50 dark:bg-slate-800/60 px-5 py-3 flex items-center justify-end border-t border-slate-100 dark:border-slate-700/50">
+<a class="text-xs font-bold text-primary flex items-center gap-1 hover:underline" href="#">
+                            Open in Classroom <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Side Widgets -->
+<aside class="hidden xl:flex flex-col w-80 shrink-0 gap-6">
+<!-- Upcoming Deadlines -->
+<div class="bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">event_upcoming</span>
+                        Upcoming Deadlines
+                    </h3>
+<span class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded uppercase">Synced</span>
+</div>
+<div class="p-4 flex flex-col gap-4">
+<!-- Deadline Item -->
+<div class="flex items-start gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all cursor-pointer">
+<div class="flex flex-col items-center justify-center h-12 w-10 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-100 dark:border-red-900/30 text-red-600 dark:text-red-400">
+<span class="text-[10px] font-bold uppercase">Oct</span>
+<span class="text-lg font-black leading-none">12</span>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="text-xs font-bold text-slate-900 dark:text-white truncate">Photosynthesis Quiz</h5>
+<p class="text-[10px] text-slate-500 dark:text-slate-400">Biology 101 • Due 5:00 PM</p>
+</div>
+</div>
+<!-- Deadline Item -->
+<div class="flex items-start gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all cursor-pointer">
+<div class="flex flex-col items-center justify-center h-12 w-10 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400">
+<span class="text-[10px] font-bold uppercase">Oct</span>
+<span class="text-lg font-black leading-none">14</span>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="text-xs font-bold text-slate-900 dark:text-white truncate">Linear Algebra Hw #4</h5>
+<p class="text-[10px] text-slate-500 dark:text-slate-400">Advanced Math • Due Midnight</p>
+</div>
+</div>
+<!-- Deadline Item -->
+<div class="flex items-start gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all cursor-pointer">
+<div class="flex flex-col items-center justify-center h-12 w-10 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400">
+<span class="text-[10px] font-bold uppercase">Oct</span>
+<span class="text-lg font-black leading-none">15</span>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="text-xs font-bold text-slate-900 dark:text-white truncate">Modern History Essay</h5>
+<p class="text-[10px] text-slate-500 dark:text-slate-400">History • Due 11:59 PM</p>
+</div>
+</div>
+<button class="w-full py-2 text-xs font-bold text-slate-500 dark:text-slate-400 border border-dashed border-slate-300 dark:border-slate-700 rounded-lg hover:border-primary hover:text-primary transition-all">
+                        View All Tasks
+                    </button>
+</div>
+</div>
+<!-- Learning Stats Widget -->
+<div class="bg-gradient-to-br from-primary to-blue-700 rounded-xl p-5 text-white shadow-xl shadow-primary/20">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined opacity-80">military_tech</span>
+<span class="text-[10px] font-black uppercase tracking-widest bg-white/20 px-2 py-0.5 rounded">Weekly Goal</span>
+</div>
+<h4 class="text-lg font-bold mb-1">Weekly Streak: 12</h4>
+<p class="text-xs opacity-80 mb-4">You're in the top 5% of your class. Keep it up!</p>
+<div class="w-full bg-white/20 h-1.5 rounded-full mb-2">
+<div class="bg-white h-full rounded-full" style="width: 85%"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold">
+<span>PROGRESS</span>
+<span>85%</span>
+</div>
+</div>
+<!-- Sidebar Footer -->
+<div class="flex flex-wrap gap-x-4 gap-y-2 px-2">
+<a class="text-[10px] font-bold text-slate-400 hover:text-primary uppercase tracking-tight" href="#">Privacy</a>
+<a class="text-[10px] font-bold text-slate-400 hover:text-primary uppercase tracking-tight" href="#">Terms</a>
+<a class="text-[10px] font-bold text-slate-400 hover:text-primary uppercase tracking-tight" href="#">Accessibility</a>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-tight">© 2024 QuizPlatform</span>
+</div>
+</aside>
+</main>
+<!-- Mobile Nav Toggle (Simplified for desktop preview) -->
+<div class="lg:hidden fixed bottom-6 right-6 z-50">
+<button class="h-14 w-14 rounded-full bg-primary text-white shadow-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</div>
+</body></html>
